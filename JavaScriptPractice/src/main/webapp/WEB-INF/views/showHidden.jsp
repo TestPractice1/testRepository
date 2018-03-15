@@ -46,6 +46,7 @@
 					
 		}); 
 		
+		
 		$('.left').on('click',function (event) {
 			
 			$("div").animate({right: '+=50px'});
@@ -77,12 +78,27 @@
 			
 		});	
 		
+		$("div").ondragstart().ondragend(function(){
+			
+			e.originalEvent.dataTransfer.setData('text',e.target.id);
+			
+		});
+			
+		
+		
+		
 		$('.save').on('click',function (){
 			
 			var div = $("div");
+			var offset = div.offset();
+			
+			/*
 			var divX = div.offset().left;
 			var divY = divEl.offset().top;
+			*/
 			
+			$(".p").html( "left: " + offset.left + ", top: " + offset.top );
+
 			
 		});
 			 
@@ -106,8 +122,11 @@
 	<input class="hide" type="button" value="사라지기"> <br>
 	<input class="show" type="button" value="나타나기"> <br>
 	<br><br><br><br>
-	<div></div>
+	<div draggable="true">
+	
+	</div>
 	<br><br><br><br>
+	<p class="p">
 	<pre>
 	    <input class="up" type="button" value="↑">
 	<input class="left" type="button" value="←"><input class="down" type="button" value="↓"><input class="right" type="button" value="→"><br>
